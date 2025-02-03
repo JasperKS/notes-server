@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express()
+require('dotenv').config()
 
 const mongoose = require('mongoose')
 
 const url = process.env.MONGODB_URI;
-console.log("this is the url: ", url)
 mongoose.set('strictQuery', false)
 
-//mongoose.connect(url)
+mongoose.connect(url)
 
 const noteSchema = new mongoose.Schema({
     content: String,
