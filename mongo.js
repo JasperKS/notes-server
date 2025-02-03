@@ -5,13 +5,12 @@ if (process.argv.length<3) {
     process.exit(1)
 }
 
-const password = process.argv[2]
-
-const url = `mongodb+srv://kjdlsarmiento:${password}@fso.bfmeq.mongodb.net/noteApp?retryWrites=true&w=majority&appName=FSO`
+const url = process.env.MONGODB_URI;
+console.log(url)
 
 mongoose.set('strictQuery', false)
 
-mongoose.connect(url)
+// mongoose.connect(url)
 
 const noteSchema = new mongoose.Schema({
     content: String,
@@ -30,6 +29,13 @@ const Note = mongoose.model('Note', noteSchema)
 //     console.log('results: ', result)
 //     mongoose.connection.close()
 // })
+
+
+app.get('/api/notes', (request, response) => {
+    Note.find({}).then(notes => {
+        response.json(notes)
+    })
+})
 
 Note.find({}).then(result => {
     result.forEach(note => {

@@ -1,6 +1,21 @@
 const express = require('express')
 const app = express()
 
+const mongoose = require('mongoose')
+
+const url = process.env.MONGODB_URI;
+console.log("this is the url: ", url)
+mongoose.set('strictQuery', false)
+
+//mongoose.connect(url)
+
+const noteSchema = new mongoose.Schema({
+    content: String,
+    important: Boolean,
+})
+
+const Note = mongoose.model('Note', noteSchema)
+
 let notes = [
     {
       id: "1",
@@ -46,7 +61,9 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api/notes', (request, response) => {
-    response.json(notes)
+    Note.find({}).then(notes => {
+        response.json(notes)
+    })
 })
 
 app.get('/api/notes/:id', (request, response) => {
