@@ -5,7 +5,7 @@ POST http://localhost:3001/api/notes/ HTTP/1.1
 content-type: application/json
 
 {
-    "content": "Post is posting",
+    "content": "It's working",
     "important": true
 }
 
@@ -36,3 +36,9 @@ content-type: application/json
     "name": "sample",
     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 }
+
+###
+DELETE http://localhost:3001/api/notes/679a089152ab7987a8fdbaaf HTTP/1.1
+
+###
+PUT http://localhost:3001/api/notes/679b53bf81494930ed2f37db HTTP/1.1
