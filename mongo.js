@@ -2,15 +2,15 @@ const mongoose = require('mongoose')
 
 require('dotenv').config()
 
-const url = process.env.MONGODB_URI;
+const url = process.env.MONGODB_URI
 
 mongoose.set('strictQuery', false)
 
 mongoose.connect(url)
 
 const noteSchema = new mongoose.Schema({
-    content: String,
-    important: Boolean,
+  content: String,
+  important: Boolean,
 })
 
 const Note = mongoose.model('Note', noteSchema)
@@ -28,8 +28,8 @@ const Note = mongoose.model('Note', noteSchema)
 
 
 Note.find({}).then(result => {
-    result.forEach(note => {
-        console.log(note)
-    })
-    mongoose.connection.close()
+  result.forEach(note => {
+    console.log(note)
+  })
+  mongoose.connection.close()
 })
