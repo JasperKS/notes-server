@@ -34,7 +34,6 @@ describe('when there are some notes saved initially', () => {
     const response = await api.get('/api/notes')
 
     const contents = response.body.map(r => r.content)
-    console.log("contents: ", contents)
     assert(contents.includes('Browser can execute only Javascript'))
 
   })
